@@ -24,14 +24,34 @@
         url: "https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=1280x720&format=jpeg&partner=hbomaxcom&productCode=hbomax&host=artist.api.cdn.hbo.com&w=1280",
       }
       const imageSharefn = () => {
-        navigator.share(shareData)
-          .then(() =>
-            resultPara.textContent = 'MDN shared successfully'
-          )
-          .catch((e) =>
-            resultPara.textContent = 'Error: ' + e
-          )
-      }
+//         navigator.share(shareData)
+//           .then(() =>
+//             resultPara.textContent = 'MDN shared successfully'
+//           )
+//           .catch((e) =>
+//             resultPara.textContent = 'Error: ' + e
+//           )
+        fetch(shareData.url)
+  .then(function(response) {
+    return response.blob()
+  })
+  .then(function(blob) {
+
+    var file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
+    var filesArray = [file];
+
+    if(navigator.canShare && navigator.canShare({ files: filesArray })) {
+      navigator.share({
+        text: 'some_text',
+        files: filesArray,
+        title: 'some_title',
+        url: 'some_url'
+      });
+    }
+  }
+
+     
+
       const btn = document.querySelector('button');
       const imgBtn = document.querySelector('img');
       
