@@ -10,45 +10,60 @@
 </head>
 <body>
 <h1>Lavesh RoXXX</h1>
-<img src="https://via.placeholder.com/300/09f/fff.png"
-     style="-webkit-user-select: none;max-width: 100%;margin: auto;">
+<!--<img src="https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=400x230&amp;format=jpeg&amp;partner=hbomaxcom&amp;productCode=hbomax&amp;host=artist.api.cdn.hbo.com&amp;w=400"-->
+<!--     style="-webkit-user-select: none;max-width: 100%;margin: auto;">-->
+<input id='share-files' type="file" name="avatar"
+       accept="image/png, image/jpeg">
+<button id="share-button">Share</button>
 
-<p>
-    <button>Share MDN!</button>
-</p>
 
-<p class="result"></p>
 
 <script>
-  let url = "https://via.placeholder.com/300/09f/fff.png";
-  
+  let shareButton = document.getElementById('share-button');
+  let shareData = {
+    title: 'Ashish',
+    text: 'Learn web development on MDN!',
+    url: "https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=1280x720&format=jpeg&partner=hbomaxcom&productCode=hbomax&host=artist.api.cdn.hbo.com&w=1280",
+  }
   const imageShareFn = () => {
-    fetch(url, { mode: 'no-cors'}).then(function (response) {
-      return response.blob()
-    }).then(function (blob) {
+    // fetch(shareData.url).then(function (response) {
+    //   return response.blob()
+    // }).then(function (blob) {
+    //
+    //   let file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
+    //   let filesArray = [file];
+    //
+    //   if (navigator.canShare && navigator.canShare({files: filesArray})) {
+    //     navigator.share({
+    //       text: 'we will rok u',
+    //       files: filesArray,
+    //       title: 'some_title',
+    //       url: 'some_url'
+    //     });
+    //   }
+    // })
 
-      let file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
-      let filesArray = [file];
+    let filesArray = document.getElementById('share-files').files;
+    let shareData = { files: filesArray };
 
-      if (navigator.canShare && navigator.canShare({files: filesArray})) {
-        navigator.share({
-          title: 'Ashish share a file',
-          files: filesArray,
-          text: 'Learn web development on MDN!',
-          url: "https://via.placeholder.com/300/09f/fff.png",
-        });
-      }
-    })
+    if (navigator.canShare && navigator.canShare(shareData)) {
+
+      // Adding title afterwards as navigator.canShare just
+      // takes files as input
+      shareData.title = "Ashish"
+
+      navigator.share(shareData)
+        .then(() => console.log('Share was successful.'))
+        .catch((error) => console.log('Sharing failed', error));
+
+    } else {
+      console.log("Your system doesn't support sharing files.");
+    }
   };
 
+  shareButton.addEventListener('click', imageShareFn);
 
-  const btn = document.querySelector('button');
-  const imgBtn = document.querySelector('img');
 
-  const resultPara = document.querySelector('.result');
-
-  btn.addEventListener('click', imageShareFn);
-  imgBtn.addEventListener('click', imageShareFn);
 
 </script>
 </body>
