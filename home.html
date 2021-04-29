@@ -20,25 +20,22 @@
 <p class="result"></p>
 
 <script>
-  let shareData = {
-    title: 'Ashish',
-    text: 'Learn web development on MDN!',
-    url: "https://via.placeholder.com/300/09f/fff.png",
-  }
+  let url = "https://via.placeholder.com/300/09f/fff.png",
+  
   const imageShareFn = () => {
     fetch(shareData.url, { mode: 'no-cors'}).then(function (response) {
       return response.blob()
     }).then(function (blob) {
 
-      var file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
-      var filesArray = [file];
+      let file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
+      let filesArray = [file];
 
       if (navigator.canShare && navigator.canShare({files: filesArray})) {
         navigator.share({
-          text: 'we will rok u',
+          title: 'Ashish share a file',
           files: filesArray,
-          title: 'some_title',
-          url: 'some_url'
+          text: 'Learn web development on MDN!',
+          url: "https://via.placeholder.com/300/09f/fff.png",
         });
       }
     })
