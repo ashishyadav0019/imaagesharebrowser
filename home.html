@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Lavesh RoXXX</h1>
-<img src="https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=400x230&amp;format=jpeg&amp;partner=hbomaxcom&amp;productCode=hbomax&amp;host=artist.api.cdn.hbo.com&amp;w=400"
+<img src="https://via.placeholder.com/300/09f/fff.png"
      style="-webkit-user-select: none;max-width: 100%;margin: auto;">
 
 <p>
@@ -23,10 +23,10 @@
   let shareData = {
     title: 'Ashish',
     text: 'Learn web development on MDN!',
-    url: "https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=1280x720&format=jpeg&partner=hbomaxcom&productCode=hbomax&host=artist.api.cdn.hbo.com&w=1280",
+    url: "https://via.placeholder.com/300/09f/fff.png",
   }
   const imageShareFn = () => {
-    fetch(shareData.url).then(function (response) {
+    fetch(shareData.url, { mode: 'no-cors'}).then(function (response) {
       return response.blob()
     }).then(function (blob) {
 
