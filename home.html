@@ -9,9 +9,9 @@
     </style>
   </head>
   <body>
-    <h1>Sharing MDN</h1>
-
-    <p>We love MDN, and want to share it as far as we can! Click the following button to share MDN's home page using your system's native share functionality. See the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#Browser_compatibility">browsers this currently works on</a>.</p>
+    <h1>Lavesh RoXXX</h1>
+    <img style="-webkit-user-select: none;max-width: 100%;margin: auto;" 
+         src="https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=400x230&amp;format=jpeg&amp;partner=hbomaxcom&amp;productCode=hbomax&amp;host=artist.api.cdn.hbo.com&amp;w=400">
 
     <p><button>Share MDN!</button></p>
 
@@ -21,13 +21,9 @@
       let shareData = {
         title: 'MDN',
         text: 'Learn web development on MDN!',
-        url: 'https://developer.mozilla.org',
+        url: "https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=1280x720&format=jpeg&partner=hbomaxcom&productCode=hbomax&host=artist.api.cdn.hbo.com&w=1280",
       }
-
-      const btn = document.querySelector('button');
-      const resultPara = document.querySelector('.result');
-
-      btn.addEventListener('click', () => {
+      const imageSharefn = () => {
         navigator.share(shareData)
           .then(() =>
             resultPara.textContent = 'MDN shared successfully'
@@ -35,7 +31,15 @@
           .catch((e) =>
             resultPara.textContent = 'Error: ' + e
           )
-      });
+      }
+      const btn = document.querySelector('button');
+      const imgBtn = document.querySelector('img');
+      
+      const resultPara = document.querySelector('.result');
+
+      btn.addEventListener('click', imageSharefn);
+      imgBtn.addEventListener('click', imageSharefn);
+      
     </script>
   </body>
 </html>
