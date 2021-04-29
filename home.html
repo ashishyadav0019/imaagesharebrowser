@@ -41,7 +41,7 @@
       };
       let file = new File([data], "test.jpg", metadata);
     
-      if (navigator.canShare && navigator.canShare({files: filesArray})) {
+      if (navigator.canShare && navigator.canShare({files: [file]})) {
         navigator.share({
           title: 'Ashish share a file',
           files: [file],
