@@ -1,65 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Web share test</title>
     <style>
 
     </style>
-  </head>
-  <body>
-    <h1>Lavesh RoXXX</h1>
-    <img style="-webkit-user-select: none;max-width: 100%;margin: auto;" 
-         src="https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=400x230&amp;format=jpeg&amp;partner=hbomaxcom&amp;productCode=hbomax&amp;host=artist.api.cdn.hbo.com&amp;w=400">
+</head>
+<body>
+<h1>Lavesh RoXXX</h1>
+<img src="https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=400x230&amp;format=jpeg&amp;partner=hbomaxcom&amp;productCode=hbomax&amp;host=artist.api.cdn.hbo.com&amp;w=400"
+     style="-webkit-user-select: none;max-width: 100%;margin: auto;">
 
-    <p><button>Share MDN!</button></p>
+<p>
+    <button>Share MDN!</button>
+</p>
 
-    <p class="result"></p>
+<p class="result"></p>
 
-    <script>
-      let shareData = {
-        title: 'MDN',
-        text: 'Learn web development on MDN!',
-        url: "https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=1280x720&format=jpeg&partner=hbomaxcom&productCode=hbomax&host=artist.api.cdn.hbo.com&w=1280",
-      }
-      const imageSharefn = () => {
-//         navigator.share(shareData)
-//           .then(() =>
-//             resultPara.textContent = 'MDN shared successfully'
-//           )
-//           .catch((e) =>
-//             resultPara.textContent = 'Error: ' + e
-//           )
-        fetch(shareData.url)
-  .then(function(response) {
-    return response.blob()
-  })
-  .then(function(blob) {
-
-    var file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
-    var filesArray = [file];
-
-    if(navigator.canShare && navigator.canShare({ files: filesArray })) {
-      navigator.share({
-        text: 'some_text',
-        files: filesArray,
-        title: 'some_title',
-        url: 'some_url'
-      });
-    }
+<script>
+  let shareData = {
+    title: 'Ashish',
+    text: 'Learn web development on MDN!',
+    url: "https://hbomax-images.warnermediacdn.com/images/GXozhGwOz77DCYwEAABBA/tileburnedin?size=1280x720&format=jpeg&partner=hbomaxcom&productCode=hbomax&host=artist.api.cdn.hbo.com&w=1280",
   }
-        }
-     
+  const imageShareFn = () => {
+    fetch(shareData.url).then(function (response) {
+      return response.blob()
+    }).then(function (blob) {
 
-      const btn = document.querySelector('button');
-      const imgBtn = document.querySelector('img');
-      
-      const resultPara = document.querySelector('.result');
+      var file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
+      var filesArray = [file];
 
-      btn.addEventListener('click', imageSharefn);
-      imgBtn.addEventListener('click', imageSharefn);
-      
-    </script>
-  </body>
+      if (navigator.canShare && navigator.canShare({files: filesArray})) {
+        navigator.share({
+          text: 'we will rok u',
+          files: filesArray,
+          title: 'some_title',
+          url: 'some_url'
+        });
+      }
+    })
+  };
+
+
+  const btn = document.querySelector('button');
+  const imgBtn = document.querySelector('img');
+
+  const resultPara = document.querySelector('.result');
+
+  btn.addEventListener('click', imageShareFn);
+  imgBtn.addEventListener('click', imageShareFn);
+
+</script>
+</body>
 </html>
