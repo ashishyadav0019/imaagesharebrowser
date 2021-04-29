@@ -23,7 +23,7 @@
   let url = "https://via.placeholder.com/300/09f/fff.png",
   
   const imageShareFn = () => {
-    fetch(shareData.url, { mode: 'no-cors'}).then(function (response) {
+    fetch(url, { mode: 'no-cors'}).then(function (response) {
       return response.blob()
     }).then(function (blob) {
 
