@@ -7,55 +7,59 @@
 </head>
 <body>
 <h1>Web share test</h1>
-<img src="./Selection_309.png"
+<h2>local image</h2>
+<img id="img1" src="./Selection_309.png"
      style="-webkit-user-select: none;max-width: 100%;margin: auto;">
 
-<p>
-    <button>Share MDN!</button>
-</p>
-
-<p class="result"></p>
+<h2>hosted image</h2>
+<img id="img2" src="https://via.placeholder.com/300/09f/fff.png"
+     style="-webkit-user-select: none;max-width: 100%;margin: auto;">
 
 <script>
   let url = new Request("Selection_309.png");
-
-  const imageShareFn = () => {
-    // fetch(url, { mode: 'no-cors'}).then(function (response) {
-    //   return response.blob()
-    // }).then(function (blob) {
-    //
-    //   let file = new File([blob], "picture.jpg", {type: 'image/jpeg'});
-    //   let filesArray = [file];
-    //
-
-   // })
-
-    async function createFile(){
-      let response = await fetch(url,{ mode: 'no-cors'});
+  const img1 = document.getElementById('img1');
+  const img2 = document.getElementById('img2');
+  const localImageShare = () => {
+    async function createFile() {
+      let response = await fetch(url, {mode: 'no-cors'});
       let data = await response.blob();
-      let metadata = {
-        type: 'image/png'
-      };
-      let file = new File([data], "test.jpg", metadata);
-    
-      if (navigator.canShare && navigator.canShare({files: [file]})) {
-        navigator.share({
-          title: 'Ashish share a file',
-          files: [file],
-          text: 'sharing images is fun'
-        
-        });
-      }
+      shareFile(data)
       // ... do something with the file or return it
     }
+
     createFile();
   };
 
+  const hostedImageShare = () => {
+    let canvas = document.createElement("canvas");
+    canvas.width = img2.width;
+    canvas.height = img2.height;
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(img2, 0, 0);
+    let dataURL = canvas.toDataURL("image/png");
+    dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    shareFile(dataURL)
+  };
 
-  const btn = document.querySelector('button');
-  const imgBtn = document.querySelector('img');
-  btn.addEventListener('click', imageShareFn);
-  imgBtn.addEventListener('click', imageShareFn);
+
+  const shareFile = (data) => {
+    let metadata = {
+      type: 'image/png'
+    };
+    let file = new File([data], "test.jpg", metadata);
+    console.log(file)
+    if (navigator.canShare && navigator.canShare({files: [file]})) {
+      navigator.share({
+        title: 'Ashish share a file',
+        files: [file],
+        text: 'sharing images is fun'
+
+      });
+    }
+  };
+
+  img1.addEventListener('click', localImageShare);
+  img2.addEventListener('click', hostedImageShare);
 
 </script>
 </body>
