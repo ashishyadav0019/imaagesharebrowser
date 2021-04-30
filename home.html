@@ -12,7 +12,7 @@
      style="-webkit-user-select: none;max-width: 100%;margin: auto;">
 
 <h2>hosted image</h2>
-<img id="img2" src="https://via.placeholder.com/300/09f/fff.png" crossorigin="anonymous"
+<img id="img2" src="https://via.placeholder.com/300/09f/fff.png" 
      style="-webkit-user-select: none;max-width: 100%;margin: auto;">
 
 <script>
@@ -32,10 +32,12 @@
 
   const hostedImageShare = () => {
     let canvas = document.createElement("canvas");
-    canvas.width = img2.width;
-    canvas.height = img2.height;
+    let img_ = img2;
+    img_.crossOrigin = "anonymous";
+    canvas.width = img_.width;
+    canvas.height = img_.height;
     let ctx = canvas.getContext("2d");
-    ctx.drawImage(img2, 0, 0);
+    ctx.drawImage(img_, 0, 0);
     let dataURL = canvas.toDataURL("image/png");
     dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     shareFile(dataURL)
