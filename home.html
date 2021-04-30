@@ -21,7 +21,7 @@
   let url = new Request("Selection_309.png");
   const img1 = document.getElementById('img1');
   const img2 = document.getElementById('img2');
-const img3 = document.getElementById('img3');
+  const img3 = document.getElementById('img3');
   const localImageShare = () => {
     createFile(url);
   };
@@ -36,11 +36,13 @@ const img3 = document.getElementById('img3');
     let canvas = document.createElement("canvas");
 
     img3.crossOrigin = "anonymous";
-    canvas.width = img3.width;
-    canvas.height = img3.height;
+    canvas.width = 300;
+    canvas.height = 300;
     let ctx = canvas.getContext("2d");
     ctx.drawImage(img3, 0, 0);
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let dataURL = canvas.toDataURL("image/png");
+
     //let b64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     //
     createFile(dataURL); 
