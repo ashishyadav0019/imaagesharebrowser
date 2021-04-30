@@ -20,15 +20,14 @@
   const img1 = document.getElementById('img1');
   const img2 = document.getElementById('img2');
   const localImageShare = () => {
-    async function createFile() {
+    createFile(url);
+  };
+ async function createFile(url) {
       let response = await fetch(url, {mode: 'no-cors'});
       let data = await response.blob();
       shareFile(data)
       // ... do something with the file or return it
     }
-
-    createFile();
-  };
 
   const hostedImageShare = () => {
     let canvas = document.createElement("canvas");
@@ -39,11 +38,9 @@
     let ctx = canvas.getContext("2d");
     ctx.drawImage(img_, 0, 0);
     let dataURL = canvas.toDataURL("image/png");
-    let b64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    //let b64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     //
-      const contentType = 'image/png';
-      const blob = b64toBlob(b64Data, contentType);
-      shareFile(blob)
+    createFile(dataURL); 
   };
 
 const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
