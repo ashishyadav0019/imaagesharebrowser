@@ -39,7 +39,7 @@
     let ctx = canvas.getContext("2d");
     ctx.drawImage(img_, 0, 0);
     let dataURL = canvas.toDataURL("image/png");
-    dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    //dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     shareFile(dataURL)
   };
 
