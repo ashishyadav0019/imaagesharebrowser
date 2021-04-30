@@ -14,11 +14,14 @@
 <h2>hosted image</h2>
 <img id="img2" src="https://via.placeholder.com/300/09f/fff.png" 
      style="-webkit-user-select: none;max-width: 100%;margin: auto;">
+<img id="img3" src="https://via.placeholder.com/300/09f/fff.png" 
+     style="display:none">
 
 <script>
   let url = new Request("Selection_309.png");
   const img1 = document.getElementById('img1');
   const img2 = document.getElementById('img2');
+const img3 = document.getElementById('img3');
   const localImageShare = () => {
     createFile(url);
   };
@@ -31,44 +34,17 @@
 
   const hostedImageShare = () => {
     let canvas = document.createElement("canvas");
-    let img_ = img2;
-    img_.crossOrigin = "anonymous";
-    canvas.width = img_.width;
-    canvas.height = img_.height;
+
+    img3.crossOrigin = "anonymous";
+    canvas.width = img3.width;
+    canvas.height = img3.height;
     let ctx = canvas.getContext("2d");
-    ctx.drawImage(img_, 0, 0);
+    ctx.drawImage(img3, 0, 0);
     let dataURL = canvas.toDataURL("image/png");
     //let b64Data = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     //
     createFile(dataURL); 
   };
-
-const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-  const byteCharacters = atob(b64Data);
-  const byteArrays = [];
-
-  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-    const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-    const byteNumbers = new Array(slice.length);
-    for (let i = 0; i < slice.length; i++) {
-      byteNumbers[i] = slice.charCodeAt(i);
-    }
-
-    const byteArray = new Uint8Array(byteNumbers);
-    byteArrays.push(byteArray);
-  }
-
-  const blob = new Blob(byteArrays, {type: contentType});
-  return blob;
-}
-
-
-
-
-
-
-
 
   const shareFile = (data) => {
     let metadata = {
